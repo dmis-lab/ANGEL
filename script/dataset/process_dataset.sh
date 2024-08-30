@@ -1,9 +1,11 @@
-# download umls vectorizor
-wget -O ./source/umls_tfidf_vectorizer.joblib https://s3-us-west-2.amazonaws.com/ai2-s2-scispacy/data/linkers/2023-04-23/umls/tfidf_vectorizer.joblib
-
+# activate virtual environment
 source /usr/miniconda3/etc/profile.d/conda.sh
 conda init 
 conda activate positive_only  
+
+# download umls vectorizor
+wget -O ./umls_tfidf_vectorizer.joblib https://s3-us-west-2.amazonaws.com/ai2-s2-scispacy/data/linkers/2023-04-23/umls/tfidf_vectorizer.joblib
+
 
 # download datasets from GenBioEL (NCBI-disease BC5CDR COMETA AskAPatient)
 gdown "https://drive.google.com/uc?id=1JWYMdwxp7_ZZRGAO-ENmgUNirx9-nX32" -O processed_data.zip

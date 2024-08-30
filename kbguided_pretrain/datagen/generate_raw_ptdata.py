@@ -154,7 +154,7 @@ class UMLS(object):
         print('number of description:', des_count)
        
 
-tfidf_vectorizer = '/ssd0/chanhwi/genel/src/umls_tfidf_vectorizer.joblib'
+tfidf_vectorizer = './umls_tfidf_vectorizer.joblib'
 vectorizer = joblib.load(tfidf_vectorizer)
 
 def generate_pair(y, mentions, select_scheme):

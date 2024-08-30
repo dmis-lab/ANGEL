@@ -13,7 +13,7 @@ import os
 import shutil
 import joblib
 
-umls_vectorizer = joblib.load('./source/umls_tfidf_vectorizer.joblib')
+umls_vectorizer = joblib.load('./umls_tfidf_vectorizer.joblib')
 
 def calculate_similarity_tfidf_top_3(a_features, b_features) -> list:
     sim = np.array(b_features.dot(a_features.T).todense())[0]

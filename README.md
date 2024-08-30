@@ -1,12 +1,12 @@
 <h3 align="center">
 <p>ANGEL
 <a href="https://github.com/dmis-lab/ANGEL/blob/main/LICENSE">
-   <img alt="GitHub" src="https://img.shields.io/badge/License-MIT-yellow.svg">
+   <img alt="GitHub" src="https://img.shields.io/badge/license-GPLv3-blue">
 </a>
 </h3>
 
 <div align="center">
-    <p><b>A</b> learning from <b>N</b>egative Samples in <b>G</b>enerative Biomedical <b>E</b>ntity <b>L</b>inking framework</p>
+    <p>Le<b>a</b>rning from <b>N</b>egative Samples in <b>G</b>enerative Biomedical <b>E</b>ntity <b>L</b>inking Framework</p>
 </div>
 
 ---
@@ -14,11 +14,12 @@
 # Introduction
 **ANGEL** is a novel framework designed to enhance generative biomedical entity linking (BioEL) by incorporating both positive and negative samples during training. 
 Traditional generative models primarily focus on positive samples, which can limit their ability to distinguish between similar entities. 
+
 **ANGEL** addresses this limitation through **preference optimization** with negative sampling, significantly improving model accuracy while maintaining the memory efficiency of generative approaches.
 
 Key features of ANGEL include:
 - **Memory Efficiency**: Retains the low memory footprint characteristic of generative models by avoiding the need for large external embeddings.
-- **Fine-Grained Learning**: Enhances the model's ability to differentiate between similar entities by using both correct and incorrect examples during training.
+- **Negative-aware Learning**: Enhances the model's ability to differentiate between similar entities by using both correct and incorrect examples during training.
 
 For a detailed description of our method, please refer to our [paper](https://arxiv.org/abs/2408.16493).
 
@@ -26,17 +27,18 @@ For a detailed description of our method, please refer to our [paper](https://ar
 
 # Features
 
-### 1. Memory-Efficient Generative Approach
+### Memory-Efficient Generative Approach
 ANGEL leverages a generative model that inherently requires less memory compared to similarity-based methods, making it suitable for large-scale biomedical applications.
 
-### 2. Enhanced Learning through Negative Sampling
+### Enhanced Learning through Negative Sampling
 By integrating negative samples during training, ANGEL improves the model's ability to distinguish between entities that have similar surface forms but different meanings.
 
 ---
 
 # Requirements
 
-ANGEL requires two separate virtual environments: one for **positive-only training** and another for **negative-aware training**. Ensure that CUDA version 11.1 is installed for optimal performance.
+ANGEL requires two separate virtual environments: one for **positive-only training** and another for **negative-aware training**. 
+Ensure that CUDA version 11.1 is installed for optimal performance.
 
 To set up the environments and install the required dependencies, run the following script:
 
@@ -45,14 +47,15 @@ bash script/environment/set_environment.sh
 ```
 
 # Dataset Preparation
-The datasets (NCBI, BC5CDR, COMETA, and AAP) were used as provided by GenBioEL, while MedMentions was processed similarly using GenBioEL code. 
-To preprocess these datasets and set up the experimental environment, execute:
+The datasets (NCBI, BC5CDR, COMETA, and AAP) were used as provided by GenBioEL, while MedMentions was processed similarly using the GenBioEL code. 
+If you need the pre-processing code, check out the [GenBioEL](https://github.com/Yuanhy1997/GenBioEL) repository. 
+To download these datasets and set up the experimental environment, execute the following steps:
 
 ```bash
 bash script/dataset/process_dataset.sh
 ```
 
-# Dataset Format
+# Dataset Format For Your Own Dataset
 For training, prepare the data in the following format:
 
 train.source: Contains JSON lines with the input text, including marked mentions.
@@ -103,7 +106,7 @@ bash script/train/train_negative.sh 0 ncbi 1e-5
 
 # Evaluation
 
-## Running Inference with the Best Model (Huggingface)
+## Running Inference with the Best Model on Huggingface
 
 To perform inference with our best model hosted on Huggingface, use the following script:
 ```bash
@@ -133,7 +136,7 @@ The results file in your model folder contains the final scores:
     "count_top3": 95.208,
     "count_top4": 95.625,
     "count_top5": 95.729,
-    ...
+    $\cdots$
 }
 ```
 
@@ -145,7 +148,7 @@ Additionally, the file lists candidates for each mention, indicating correctness
     "result": [
       " breast carcinomas",
       " breast cancer",
-      ...
+      $\cdots$
     ],
     "cui_label": [
       "D001943"
@@ -153,7 +156,7 @@ Additionally, the file lists candidates for each mention, indicating correctness
     "cui_result": [
       ["D001943"],
       ["114480","D001943"],
-      ...
+      $\cdots$
       ]
 }
 ```

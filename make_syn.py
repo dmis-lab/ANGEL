@@ -7,7 +7,7 @@ from tqdm import tqdm
 import argparse
 
 # Load the UMLS TF-IDF vectorizer
-umls_vectorizer = joblib.load('./source/umls_tfidf_vectorizer.joblib')
+umls_vectorizer = joblib.load('./umls_tfidf_vectorizer.joblib')
 
 
 def read_file_by_lines(file: str) -> list:
