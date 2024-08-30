@@ -92,6 +92,7 @@ To fine-tune NCBI-disease dataset using positive-only training, run:
 # NCBI-disease
 bash bash script/train/train_positive.sh 0 ncbi 3e-7 20000
 ```
+The script for other datasets is in the train_positive.sh file.
 
 #### Negative-Aware Training
 
@@ -100,7 +101,7 @@ For negative-aware fine-tuning on the NCBI-disease dataset, execute:
 # NCBI-disease
 bash script/train/train_negative.sh 0 ncbi 1e-5
 ```
-
+The script for other datasets is in the train_negative.sh file.
 
 ## Evaluation
 
