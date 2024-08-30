@@ -11,7 +11,7 @@
 
 ---
 
-# Introduction
+## Introduction
 **ANGEL** is a novel framework designed to enhance generative biomedical entity linking (BioEL) by incorporating both positive and negative samples during training. 
 Traditional generative models primarily focus on positive samples, which can limit their ability to distinguish between similar entities. 
 
@@ -23,20 +23,17 @@ Key features of ANGEL include:
 
 For a detailed description of our method, please refer to our [paper](https://arxiv.org/abs/2408.16493).
 
----
+### Features
 
-# Features
-
-### Memory-Efficient Generative Approach
+#### Memory-Efficient Generative Approach
 ANGEL leverages a generative model that inherently requires less memory compared to similarity-based methods, making it suitable for large-scale biomedical applications.
 
-### Enhanced Learning through Negative Sampling
+#### Enhanced Learning through Negative Sampling
 By integrating negative samples during training, ANGEL improves the model's ability to distinguish between entities that have similar surface forms but different meanings.
 
 ---
 
-# Requirements
-
+## Requirements
 ANGEL requires two separate virtual environments: one for **positive-only training** and another for **negative-aware training**. 
 Ensure that CUDA version 11.1 is installed for optimal performance.
 
@@ -46,7 +43,7 @@ To set up the environments and install the required dependencies, run the follow
 bash script/environment/set_environment.sh
 ```
 
-# Dataset Preparation
+## Dataset Preparation
 The datasets (NCBI, BC5CDR, COMETA, and AAP) were used as provided by GenBioEL, while MedMentions was processed similarly using the GenBioEL code. 
 If you need the pre-processing code, check out the [GenBioEL](https://github.com/Yuanhy1997/GenBioEL) repository. 
 To download these datasets and set up the experimental environment, execute the following steps:
@@ -55,7 +52,7 @@ To download these datasets and set up the experimental environment, execute the 
 bash script/dataset/process_dataset.sh
 ```
 
-# Dataset Format For Your Own Dataset
+### Dataset Format
 For training, prepare the data in the following format:
 
 train.source: Contains JSON lines with the input text, including marked mentions.
@@ -71,23 +68,24 @@ For trie construction:
 - If using prefix prompt tokens, set the trie root as 16 (the token ID for is).
 - If not using prefix tokens, set the root as 2 (the BART decoder’s BOS token).
 
+To experiment with your own dataset, preprocess it in the format described above.
 
-# Pre-training
+## Pre-training
 
-## Positive-Only Training
+#### Positive-Only Training
 
 We conducted positive-only pre-training using the code from [GenBioEL](https://github.com/Yuanhy1997/GenBioEL). 
 If you wish to replicate this, follow the instructions provided in the GenBioEL repository.
 
-## Negative-Aware Training
+#### Negative-Aware Training
 
 Negative-aware pre-training was conducted using the code from [alignment-handbook](https://github.com/huggingface/alignment-handbook). 
 This step refines the model’s ability to differentiate between closely related entities by learning from negative examples.
 
 
-# Fine-tuning
+## Fine-tuning
 
-## Positive-Only Training
+#### Positive-Only Training
 
 To fine-tune NCBI-disease dataset using positive-only training, run:
 ```bash
@@ -95,7 +93,7 @@ To fine-tune NCBI-disease dataset using positive-only training, run:
 bash bash script/train/train_positive.sh 0 ncbi 3e-7 20000
 ```
 
-## Negative-Aware Training
+#### Negative-Aware Training
 
 For negative-aware fine-tuning on the NCBI-disease dataset, execute:
 ```bash
@@ -104,9 +102,9 @@ bash script/train/train_negative.sh 0 ncbi 1e-5
 ```
 
 
-# Evaluation
+## Evaluation
 
-## Running Inference with the Best Model on Huggingface
+#### Running Inference with the Best Model on Huggingface
 
 To perform inference with our best model hosted on Huggingface, use the following script:
 ```bash
@@ -136,7 +134,7 @@ The results file in your model folder contains the final scores:
     "count_top3": 95.208,
     "count_top4": 95.625,
     "count_top5": 95.729,
-    $\cdots$
+    ...
 }
 ```
 
@@ -148,7 +146,7 @@ Additionally, the file lists candidates for each mention, indicating correctness
     "result": [
       " breast carcinomas",
       " breast cancer",
-      $\cdots$
+      ...
     ],
     "cui_label": [
       "D001943"
@@ -156,7 +154,7 @@ Additionally, the file lists candidates for each mention, indicating correctness
     "cui_result": [
       ["D001943"],
       ["114480","D001943"],
-      $\cdots$
+      ...
       ]
 }
 ```
