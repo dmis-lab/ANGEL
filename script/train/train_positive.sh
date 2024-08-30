@@ -19,8 +19,9 @@ DEVICE_NUMBER=$1
 DATASET=$2
 LEARNING_RATE=$3
 STEPS=$4
+BATCH_SIZE= 64
 MODEL_PATH=chanwhistle/ANGEL_Pretrained
-DATATYPE=SYN3
+DATATYPE=SYN3                                   # If you want to don't use top-k synonyms, remove this
 
 source /usr/miniconda3/etc/profile.d/conda.sh
 conda init 
@@ -38,13 +39,13 @@ if [ $DATASET != "aap" ]; then
                                                 -max_steps $STEPS \
                                                 -warmup_steps 500 \
                                                 -logging_steps 1000 \
-                                                -per_device_train_batch_size 1 \
+                                                -per_device_train_batch_size $BATCH_SIZE \
                                                 -seed 0 \
                                                 -prefix_mention_is \
                                                 -evaluation_strategy no \
                                                 -lr_scheduler_type polynomial \
                                                 -finetune \
-                                                -dataset $DATATYPE                                    # If you want to don'y use top-k synonyms, remove this
+                                                -dataset $DATATYPE                                    # If you want to don't use top-k synonyms, remove this
 
     CUDA_VISIBLE_DEVICES=$DEVICE_NUMBER python ./train_positive_only.py \
                                                 -dataset_path ./benchmarks/$DATASET \
@@ -55,7 +56,7 @@ if [ $DATASET != "aap" ]; then
                                                 -dict_path ./benchmarks/"$DATASET"/target_kb.json \
                                                 -init_lr $LEARNING_RATE \
                                                 -max_steps $STEPS \
-                                                -per_device_train_batch_size 16 \
+                                                -per_device_train_batch_size $BATCH_SIZE \
                                                 -per_device_eval_batch_size 1 \
                                                 -seed 0 \
                                                 -num_beams 10 \
@@ -63,7 +64,7 @@ if [ $DATASET != "aap" ]; then
                                                 -prefix_mention_is \
                                                 -evaluation \
                                                 -testset \
-                                                -dataset $DATATYPE                                    # If you want to don'y use top-k synonyms, remove this         
+                                                -dataset $DATATYPE                                    # If you want to don't use top-k synonyms, remove this 
 
 else
     for split in {0..9}; do
@@ -75,16 +76,16 @@ else
                                                     -model_token_path facebook/bart-large \
                                                     -logging_path ./logs/$DATASET \
                                                     -init_lr $LEARNING_RATE \
-                                                    -max_steps $STEPS 
+                                                    -max_steps $STEPS \
                                                     -warmup_steps 500 \
                                                     -logging_steps 1000 \
-                                                    -per_device_train_batch_size 1 \
+                                                    -per_device_train_batch_size $BATCH_SIZE \
                                                     -seed 0 \
                                                     -prefix_mention_is \
                                                     -evaluation_strategy no \
                                                     -lr_scheduler_type polynomial \
                                                     -finetune \
-                                                    -dataset $DATATYPE                                    # If you want to don'y use top-k synonyms, remove this
+                                                    -dataset $DATATYPE                                    # If you want to don't use top-k synonyms, remove this
 
         CUDA_VISIBLE_DEVICES=$DEVICE_NUMBER python ./train_positive_only.py \
                                                     -dataset_path ./benchmarks/$DATASET/fold$split \
@@ -95,7 +96,7 @@ else
                                                     -dict_path ./benchmarks/"$DATASET"/target_kb.json \
                                                     -init_lr $LEARNING_RATE \
                                                     -max_steps $STEPS \
-                                                    -per_device_train_batch_size 16 \
+                                                    -per_device_train_batch_size $BATCH_SIZE \
                                                     -per_device_eval_batch_size 1 \
                                                     -seed 0 \
                                                     -num_beams 10 \
@@ -103,6 +104,6 @@ else
                                                     -prefix_mention_is \
                                                     -evaluation \
                                                     -testset \
-                                                    -dataset $DATATYPE                                    # If you want to don'y use top-k synonyms, remove this
+                                                    -dataset $DATATYPE                                    # If you want to don't use top-k synonyms, remove this
     done
 fi

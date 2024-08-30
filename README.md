@@ -92,7 +92,7 @@ This step refines the model’s ability to differentiate between closely related
 To fine-tune NCBI-disease dataset using positive-only training, run:
 ```bash
 # NCBI-disease
-bash script/train/train_negative.sh 0 ncbi 1e-5
+bash bash script/train/train_positive.sh 0 ncbi 3e-7 20000
 ```
 
 ## Negative-Aware Training
