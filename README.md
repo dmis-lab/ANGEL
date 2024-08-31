@@ -175,4 +175,6 @@ If interested, please cite:
       url={https://arxiv.org/abs/2408.16493}, 
 }
 ```
-Some of our code are modified from YuanHongyi's [GenBioEL](https://github.com/Yuanhy1997/GenBioEL) work.
+
+## Acknowledgement
+Parts of the code are modified from [GenBioEL](https://github.com/Yuanhy1997/GenBioEL). We appreciate the authors for making GenBioEL open-sourced.
