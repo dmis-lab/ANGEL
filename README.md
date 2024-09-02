@@ -19,7 +19,7 @@ Key features of ANGEL include:
 - **Memory Efficiency**: Retains the low memory footprint characteristic of generative models by avoiding the need for large pre-computed entity embeddings.
 
 For a detailed description of our method, please refer to our paper: 
-- 📄 **paper**: [Learning from Negative Samples in Generative Biomedical Entity Linking](https://arxiv.org/abs/2408.16493).
+- **Paper**: [Learning from Negative Samples in Generative Biomedical Entity Linking](https://arxiv.org/abs/2408.16493).
 
 ## Requirements
 ANGEL requires two separate virtual environments: one for *positive-only training* and another for *negative-aware training*.
