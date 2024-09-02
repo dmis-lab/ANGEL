@@ -12,30 +12,17 @@
 ---
 
 ## Introduction
-**ANGEL** is a novel framework designed to enhance generative biomedical entity linking (BioEL) by incorporating both positive and negative samples during training. 
-Traditional generative models primarily focus on positive samples, which can limit their ability to distinguish between similar entities. 
-
-**ANGEL** addresses this limitation through **preference optimization** with negative sampling, significantly improving model accuracy while maintaining the memory efficiency of generative approaches.
+**ANGEL** is a novel framework designed to enhance generative biomedical entity linking (BioEL) by incorporating both positive and negative samples during training. Traditional generative models primarily focus on positive samples during training, which can limit their ability to distinguish between similar entities. We address this limitation by using *direct preference optimization* with negative samples, significantly enhancing model accuracy.
 
 Key features of ANGEL include:
-- **Memory Efficiency**: Retains the low memory footprint characteristic of generative models by avoiding the need for large external embeddings.
 - **Negative-aware Learning**: Enhances the model's ability to differentiate between similar entities by using both correct and incorrect examples during training.
+- **Memory Efficiency**: Retains the low memory footprint characteristic of generative models by avoiding the need for large pre-computed entity embeddings.
 
-For a detailed description of our method, please refer to our [paper](https://arxiv.org/abs/2408.16493).
-
-### Features
-
-#### - Memory-Efficient Generative Approach
-ANGEL leverages a generative model that inherently requires less memory compared to similarity-based methods, making it suitable for large-scale biomedical applications.
-
-#### - Enhanced Learning through Negative Sampling
-By integrating negative samples during training, ANGEL improves the model's ability to distinguish between entities that have similar surface forms but different meanings.
-
----
+For a detailed description of our method, please refer to our 📄 **paper**: [Learning from Negative Samples in Generative Biomedical Entity Linking](https://arxiv.org/abs/2408.16493).
 
 ## Requirements
-ANGEL requires two separate virtual environments: one for **positive-only training** and another for **negative-aware training**. 
-Ensure that CUDA version 11.1 is installed for optimal performance.
+ANGEL requires two separate virtual environments: one for *positive-only training* and another for *negative-aware training*.
+Please ensure that CUDA version 11.1 is installed for optimal performance.
 
 To set up the environments and install the required dependencies, run the following script:
 
@@ -44,8 +31,8 @@ bash script/environment/set_environment.sh
 ```
 
 ## Dataset Preparation
-The datasets (NCBI, BC5CDR, COMETA, and AAP) were used as provided by GenBioEL, while MedMentions was processed similarly using the GenBioEL code. 
-If you need the pre-processing code, check out the [GenBioEL](https://github.com/Yuanhy1997/GenBioEL) repository. 
+Most datasets (i.e., NCBI-disease, BC5CDR, COMETA, and AskAPatient) were used as provided by GenBioEL, and MedMentions was processed in a similar manner using the GenBioEL code. 
+If you need the pre-processing code, you can find it in the [GenBioEL](https://github.com/Yuanhy1997/GenBioEL) repository. 
 To download these datasets and set up the experimental environment, execute the following steps:
 
 ```bash
