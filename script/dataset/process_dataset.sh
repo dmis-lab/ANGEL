@@ -26,11 +26,11 @@ echo "Download Dataset Complete!"
 DATASET=(ncbi cometa bc5cdr aap mm)
 
 for dataset in "${DATASET[@]}"; do
-    python make_syn.py \
-    -dataset $dataset \
-    -num_k 3 
-      
     python ./trie/create_trie_and_target_kb.py \
     -dataset $dataset \
     -base_dir ./benchmarks
+
+    python make_syn.py \
+    -dataset $dataset \
+    -num_k 3 
 done

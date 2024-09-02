@@ -68,44 +68,45 @@ For trie construction:
 - If using prefix prompt tokens, set the trie root as 16 (the token ID for is).
 - If not using prefix tokens, set the root as 2 (the BART decoder’s BOS token).
 
-To experiment with your own dataset, preprocess it in the format described above.
 
-## Pre-training
+# Pre-training
 
-#### Positive-Only Training
+## Positive-Only Training
 
-We conducted positive-only pre-training using the code from [GenBioEL](https://github.com/Yuanhy1997/GenBioEL). 
-If you wish to replicate this, follow the instructions provided in the GenBioEL repository.
+<!-- Negative-aware pre-training was conducted using the code from [alignment-handbook](https://github.com/huggingface/alignment-handbook). 
+This step refines the model’s ability to differentiate between closely related entities by learning from negative examples. -->
 
-#### Negative-Aware Training
+## Negative-Aware Training
 
-Negative-aware pre-training was conducted using the code from [alignment-handbook](https://github.com/huggingface/alignment-handbook). 
-This step refines the model’s ability to differentiate between closely related entities by learning from negative examples.
+```python
+from transformers import AutoModel
 
+# Load the tokenizer and model
+model = AutoModel.from_pretrained("chanwhistle/ANGEL_pretrained")
+```
 
 ## Fine-tuning
 
 #### Positive-Only Training
 
-To fine-tune NCBI-disease dataset using positive-only training, run:
+To fine-tune downstream dataset using positive-only training, run:
 ```bash
 # NCBI-disease
 bash bash script/train/train_positive.sh 0 ncbi 3e-7 20000
 ```
-The script for other datasets is in the train_positive.sh file.
 
-#### Negative-Aware Training
+## Negative-Aware Training
 
-For negative-aware fine-tuning on the NCBI-disease dataset, execute:
+For negative-aware fine-tuning on the downstream dataset, execute:
 ```bash
 # NCBI-disease
 bash script/train/train_negative.sh 0 ncbi 1e-5
 ```
-The script for other datasets is in the train_negative.sh file.
 
-## Evaluation
 
-#### Running Inference with the Best Model on Huggingface
+# Evaluation
+
+## Running Inference with the Best Model on Huggingface
 
 To perform inference with our best model hosted on Huggingface, use the following script:
 ```bash
@@ -117,11 +118,11 @@ bash script/inference/inference.sh 0 ncbi
 #### BEST Score
 |              Model                | Acc@1/Acc@5 | 
 |:----------------------------------|:--------:|   
-| [ANGEL-NCBI-disease](https://huggingface.co/chanwhistle/ANGEL_ncbi) | **92.8**/**95.7** | 
-| [ANGEL-BC5CDR](https://huggingface.co/chanwhistle/ANGEL_bc5cdr) | **94.5**/**96.8** |
-| [ANGEL-COMETA](https://huggingface.co/chanwhistle/ANGEL_cometa) | **82.8**/**88.6** |
-| ANGEL-AskAPatient | **90.2**/**95.2** | 
-| [ANGEL-MedMentions](https://huggingface.co/chanwhistle/ANGEL_mm) | **73.3**/**84.3**  | 
+| [ANGEL_ncbi](https://huggingface.co/chanwhistle/ANGEL_ncbi) | **92.8**/**95.7** | 
+| [ANGEL_bc5cdr](https://huggingface.co/chanwhistle/ANGEL_bc5cdr) | **94.5**/**96.8** |
+| [ANGEL_cometa](https://huggingface.co/chanwhistle/ANGEL_cometa) | **82.8**/**88.5** |
+| ANGEL_aap | **90.2**/**95.2** | 
+| [ANGEL_mm](https://huggingface.co/chanwhistle/ANGEL_mm) | **73.3**/**84.3**  | 
 
 
 
