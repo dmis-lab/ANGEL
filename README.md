@@ -72,19 +72,19 @@ To experiment with your own dataset, preprocess it in the format described above
 
 ## Pre-training
 
-<!-- #### Positive-Only Training -->
+#### Positive-Only Training
 
-<!-- We conducted positive-only pre-training using the code from [GenBioEL](https://github.com/Yuanhy1997/GenBioEL). 
-If you wish to replicate this, follow the instructions provided in the GenBioEL repository. -->
+We conducted positive-only pre-training using the code from [GenBioEL](https://github.com/Yuanhy1997/GenBioEL). 
+If you wish to replicate this, follow the instructions provided in the GenBioEL repository.
 
-<!-- #### Negative-Aware Training -->
+ #### Negative-Aware Training
 
 <!-- Negative-aware pre-training was conducted using the code from [alignment-handbook](https://github.com/huggingface/alignment-handbook). 
 This step refines the model’s ability to differentiate between closely related entities by learning from negative examples. -->
 
-The pretraining code will be open-sourced shortly.
-The pretrained model utilized in this project is hosted on Hugging Face. 
-If you want to use pretrained model, you can use the model with the following script:
+Negative-aware pre-training code will be open-sourced shortly.
+The pre-trained model utilized in this project is uploaded on Hugging Face. 
+If you want to use negative-aware pre-trained model, you can use the model with the following script:
 
 ```python
 from transformers import AutoModel
