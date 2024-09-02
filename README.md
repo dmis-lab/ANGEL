@@ -124,12 +124,12 @@ The script for other datasets is in the train_negative.sh file.
 
 To perform inference with our best model hosted on Huggingface, use the following script:
 ```bash
-# NCBI-disease
-bash script/inference/inference.sh 0 ncbi
+DATASET=ncbi # bc5cdr, cometa, aap, mm
+bash script/inference/inference.sh $DATASET
 ```
 
 
-#### - BEST Score
+#### BEST Score
 |              Model                | Acc@1/Acc@5 | 
 |:----------------------------------|:--------:|   
 | [ANGEL_ncbi](https://huggingface.co/chanwhistle/ANGEL_ncbi) | **92.8**/**95.7** | 
