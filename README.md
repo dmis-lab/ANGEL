@@ -68,20 +68,28 @@ For trie construction:
 - If using prefix prompt tokens, set the trie root as 16 (the token ID for is).
 - If not using prefix tokens, set the root as 2 (the BART decoder’s BOS token).
 
+To experiment with your own dataset, preprocess it in the format described above.
 
-# Pre-training
+## Pre-training
 
-## Positive-Only Training
+<!-- #### Positive-Only Training -->
+
+<!-- We conducted positive-only pre-training using the code from [GenBioEL](https://github.com/Yuanhy1997/GenBioEL). 
+If you wish to replicate this, follow the instructions provided in the GenBioEL repository. -->
+
+<!-- #### Negative-Aware Training -->
 
 <!-- Negative-aware pre-training was conducted using the code from [alignment-handbook](https://github.com/huggingface/alignment-handbook). 
 This step refines the model’s ability to differentiate between closely related entities by learning from negative examples. -->
 
-## Negative-Aware Training
+The pretraining code will be open-sourced shortly.
+The pretrained model utilized in this project is hosted on Hugging Face. 
+If you want to use pretrained model, you can use the model with the following script:
 
 ```python
 from transformers import AutoModel
 
-# Load the tokenizer and model
+# Load the model
 model = AutoModel.from_pretrained("chanwhistle/ANGEL_pretrained")
 ```
 
@@ -91,22 +99,28 @@ model = AutoModel.from_pretrained("chanwhistle/ANGEL_pretrained")
 
 To fine-tune downstream dataset using positive-only training, run:
 ```bash
-# NCBI-disease
-bash bash script/train/train_positive.sh 0 ncbi 3e-7 20000
-```
+DATASET=ncbi # bc5cdr, cometa, aap, mm
+LEARNING_RATE=3e-7 # 1e-5, 2e-5
+STEPS=20000 # 30000, 40000
 
-## Negative-Aware Training
+bash script/train/train_positive.sh $DATASET $LEARNING_RATE $STEPS
+```
+The script for other datasets is in the train_positive.sh file.
+
+#### Negative-Aware Training
 
 For negative-aware fine-tuning on the downstream dataset, execute:
 ```bash
-# NCBI-disease
-bash script/train/train_negative.sh 0 ncbi 1e-5
+DATASET=ncbi # bc5cdr, cometa, aap, mm
+LEARNING_RATE=2e-5 # 1e-5, 2e-5
+
+bash script/train/train_negative.sh $DATASET $LEARNING_RATE
 ```
+The script for other datasets is in the train_negative.sh file.
 
+## Evaluation
 
-# Evaluation
-
-## Running Inference with the Best Model on Huggingface
+#### Running Inference with the Best Model on Huggingface
 
 To perform inference with our best model hosted on Huggingface, use the following script:
 ```bash
