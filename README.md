@@ -25,10 +25,10 @@ For a detailed description of our method, please refer to our [paper](https://ar
 
 ### Features
 
-#### Memory-Efficient Generative Approach
+#### - Memory-Efficient Generative Approach
 ANGEL leverages a generative model that inherently requires less memory compared to similarity-based methods, making it suitable for large-scale biomedical applications.
 
-#### Enhanced Learning through Negative Sampling
+#### - Enhanced Learning through Negative Sampling
 By integrating negative samples during training, ANGEL improves the model's ability to distinguish between entities that have similar surface forms but different meanings.
 
 ---
@@ -95,7 +95,7 @@ model = AutoModel.from_pretrained("chanwhistle/ANGEL_pretrained")
 
 ## Fine-tuning
 
-#### Positive-Only Training
+### Positive-Only Training
 
 To fine-tune downstream dataset using positive-only training, run:
 ```bash
@@ -107,7 +107,7 @@ bash script/train/train_positive.sh $DATASET $LEARNING_RATE $STEPS
 ```
 The script for other datasets is in the train_positive.sh file.
 
-#### Negative-Aware Training
+### Negative-Aware Training
 
 For negative-aware fine-tuning on the downstream dataset, execute:
 ```bash
@@ -120,7 +120,7 @@ The script for other datasets is in the train_negative.sh file.
 
 ## Evaluation
 
-#### Running Inference with the Best Model on Huggingface
+### Running Inference with the Best Model on Huggingface
 
 To perform inference with our best model hosted on Huggingface, use the following script:
 ```bash
@@ -129,7 +129,7 @@ bash script/inference/inference.sh 0 ncbi
 ```
 
 
-#### BEST Score
+#### - BEST Score
 |              Model                | Acc@1/Acc@5 | 
 |:----------------------------------|:--------:|   
 | [ANGEL_ncbi](https://huggingface.co/chanwhistle/ANGEL_ncbi) | **92.8**/**95.7** | 
