@@ -125,6 +125,7 @@ The script for other datasets is in the train_negative.sh file.
 To perform inference with our best model hosted on Huggingface, use the following script:
 ```bash
 DATASET=ncbi # bc5cdr, cometa, aap, mm
+
 bash script/inference/inference.sh $DATASET
 ```
 
