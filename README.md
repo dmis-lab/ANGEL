@@ -215,6 +215,8 @@ We utilized five popular BioEL benchmark datasets: NCBI-disease (NCBI), BC5CDR, 
 |:------------:|:-----:|:-----:|:-----:|:-----:| 
 | [ANGEL_pretrained](https://huggingface.co/chanwhistle/ANGEL_pretrained)| [ANGEL_ncbi](https://huggingface.co/chanwhistle/ANGEL_ncbi) | [ANGEL_bc5cdr](https://huggingface.co/chanwhistle/ANGEL_bc5cdr) | [ANGEL_cometa](https://huggingface.co/chanwhistle/ANGEL_cometa) |  [ANGEL_mm](https://huggingface.co/chanwhistle/ANGEL_mm) |
 
+- The AskAPatient dataset does not have a predefined split; therefore, we utilized a 10-fold cross-validation method to evaluate our model. As a result, there are 10 model checkpoints corresponding to the AskAPatient dataset. Due to this, we have not open-sourced the checkpoints for this dataset.
+
 ## Citations
 
 If you are interested in our work, please cite:
