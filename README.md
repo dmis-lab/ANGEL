@@ -10,7 +10,8 @@
 </div>
 
 ---
-[Main Figure](https://github.com/dmis-lab/ANGEL/blob/main/assets/main_figure_git.png)
+
+![Main Image](https://github.com/dmis-lab/ANGEL/blob/main/assets/main_figure_git.png)
 
 ## Introduction
 **ANGEL** is a novel framework designed to enhance generative biomedical entity linking (BioEL) by incorporating both positive and negative samples during training. Traditional generative models primarily focus on positive samples during training, which can limit their ability to distinguish between similar entities. We address this limitation by using *direct preference optimization* with negative samples, significantly enhancing model accuracy.
