@@ -45,9 +45,9 @@ bash script/dataset/process_dataset.sh
 For training, prepare the data in the following format:
 
 - source: Input text including marked mentions with **START** and **END**.
-- Example : ['Ocular manifestations of **START** juvenile rheumatoid arthritis **END**.']
+- ex) ['Ocular manifestations of **START** juvenile rheumatoid arthritis **END**.']
 - target: Pair of the prefix ['mention is'] and the ['target entity'].
-- Example : ['juvenile rheumatoid arthritis is ', 'juvenile rheumatoid arthritis']
+- ex) ['juvenile rheumatoid arthritis is ', 'juvenile rheumatoid arthritis']
 
 A Prefix Tree (or **Trie**) is a type of tree data structure used to efficiently store and manage a set of strings. 
 Each node in the Trie represents a single token, and entire strings are formed by tracing a path from the root to a specific node.
