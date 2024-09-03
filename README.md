@@ -9,10 +9,9 @@
     <p>Le<b>a</b>rning from <b>N</b>egative Samples in <b>G</b>enerative Biomedical <b>E</b>ntity <b>L</b>inking Framework</p>
 </div>
 
----
-
 ![Main Image](https://github.com/dmis-lab/ANGEL/blob/main/assets/main_figure_git.png)
 
+---
 ## Introduction
 **ANGEL** is a novel framework designed to enhance generative biomedical entity linking (BioEL) by incorporating both positive and negative samples during training. Traditional generative models primarily focus on positive samples during training, which can limit their ability to distinguish between similar entities. We address this limitation by using *direct preference optimization* with negative samples, significantly enhancing model accuracy.
 
@@ -46,13 +45,12 @@ bash script/dataset/process_dataset.sh
 For training, prepare the data in the following format:
 
 - source: Input text including marked mentions with **START** and **END**.
-- Example : ['Ocular manifestations of START juvenile rheumatoid arthritis END.']
-
-- target: Pair of the prefix [the mention is] and the [target entity].
+- Example : ['Ocular manifestations of **START** juvenile rheumatoid arthritis **END**.']
+- target: Pair of the prefix ['mention is'] and the ['target entity'].
 - Example : ['juvenile rheumatoid arthritis is ', 'juvenile rheumatoid arthritis']
 
 A Prefix Tree (or **Trie**) is a type of tree data structure used to efficiently store and manage a set of strings. 
-Each node in the Trie represents a single character, and entire strings are formed by tracing a path from the root to a specific node.
+Each node in the Trie represents a single token, and entire strings are formed by tracing a path from the root to a specific node.
 In this context, we tokenize target entities and build a Trie structure to restrict the output space to the target knowledge base. 
 To construct the Trie, you need to create a target_kb.json file formatted as a dictionary like below.
 
@@ -60,12 +58,13 @@ To construct the Trie, you need to create a target_kb.json file formatted as a d
 {
   "C565588": ["epidermolysis bullosa with diaphragmatic hernia"], 
   "C567755": ["tooth agenesis selective 6", "sthag6"], 
-  "C565584": ["epithelial squamous dysplasia keratinizing desquamative of urinary tract"].
+  "C565584": ["epithelial squamous dysplasia keratinizing desquamative of urinary tract"],
   ...
 }
 ```
 
 To experiment with your own dataset, preprocess it in the format described above.
+
 
 ## Pre-training
 
@@ -225,14 +224,11 @@ We utilized five popular BioEL benchmark datasets: NCBI-disease (NCBI), BC5CDR, 
 | [ANGEL_pretrained](https://huggingface.co/chanwhistle/ANGEL_pretrained)| [ANGEL_ncbi](https://huggingface.co/chanwhistle/ANGEL_ncbi) | [ANGEL_bc5cdr](https://huggingface.co/chanwhistle/ANGEL_bc5cdr) | [ANGEL_cometa](https://huggingface.co/chanwhistle/ANGEL_cometa) |  [ANGEL_mm](https://huggingface.co/chanwhistle/ANGEL_mm) |
 
 - The AskAPatient dataset does not have a predefined split; therefore, we utilized a 10-fold cross-validation method to evaluate our model. As a result, there are 10 model checkpoints corresponding to the AskAPatient dataset. Due to this, we have not open-sourced the checkpoints for this dataset.
-<<<<<<< HEAD
-=======
 
 
 ## Direct Use
 
 To run the model without any need for a preprocessed dataset, you can use the run_sample.py script. 
-Below is a guide on how to execute the script and customize it to suit your needs.
 
 ```bash
 bash script/inference/run_sample.sh ncbi
@@ -241,32 +237,27 @@ bash script/inference/run_sample.sh ncbi
 If you want to modify the sample or input, you can change the script in run_sample.py.
 
 #### Define Your Inputs
-input_sentence: The sentence that includes the entity you want to normalize. Make sure the entity is enclosed within **START** and **END** markers.
-prefix_sentence: A sentence that introduces the context. This should follow the format "**entity** is".
-candidates: A list of candidate entities that the model will use to attempt normalization.
+- input_sentence: The sentence that includes the entity you want to normalize. Make sure the entity is enclosed within **START** and **END** markers.
+- prefix_sentence: A sentence that introduces the context. This should follow the format "**entity** is".
+- candidates: A list of candidate entities that the model will use to attempt normalization.
 
 ```python
 if __name__ == '__main__':
     
-    # Load configuration settings
     config = get_config()
     
     # Define the input sentence, marking the entity of interest with START and END
     input_sentence = "The r496h mutation of arylsulfatase a does not cause START metachromatic leukodystrophy END"
-    
     # Define the prefix sentence to provide context
     prefix_sentence = "Metachromatic leukodystrophy is"
-    
     # List your candidate entities for normalization
     candidates = ["adrenoleukodystrophy", "thrombosis", "anemia", "huntington disease", "leukodystrophy metachromatic"]
     
-    # Run the sample with the provided configuration and inputs
     run_sample(config, input_sentence, prefix_sentence, candidates)
 ```
 
 By modifying input_sentence, prefix_sentence, and candidates, you can tailor the examples used by the model to fit your specific needs.
 
->>>>>>> 260bee4 (resolve error)
 
 ## Citations
 
