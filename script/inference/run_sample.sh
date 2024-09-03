@@ -5,16 +5,9 @@ source /usr/miniconda3/etc/profile.d/conda.sh
 conda init 
 conda activate positive_only  
 
-python ./train_positive_only.py \
-        -dataset_path ./benchmarks/$DATASET \
+python ./run_sample.py \
         -model_load_path chanwhistle/ANGEL_$DATASET \
         -model_token_path facebook/bart-large \
-        -trie_path ./benchmarks/$DATASET/trie.pkl\
-        -dict_path ./benchmarks/"$DATASET"/target_kb.json \
-        -model_name $DATASET \
         -per_device_eval_batch_size 1 \
-        -num_beams 10 \
-        -prefix_prompt \
+        -num_beams 5 \
         -prefix_mention_is \
-        -evaluation \
-        -testset

@@ -113,8 +113,7 @@ def padding_sequence(tokens, max_len):
     
 def prepare_trainer_dataset(tokenizer, text_path = None, prefix_mention_is=False, evaluate = False, dataset = ''):
     
-    if not evaluate:
-        
+    if not evaluate:        
         if len(dataset) > 0:
             text_path = text_path + '_' + dataset
         else:
@@ -197,3 +196,20 @@ def read_ids_from_json(path, data_split, evaluate=False, prefix_mention_is=False
     tokens_y = padding_sequence(tokens_y, max_len_y)
 
     return tokens_x, tokens_y
+
+def process_sample(input_sentence, prefix_sentence):
+    
+    tokens_x = {'input_ids':[], 'attention_mask':[]}
+    tokens_y = {'labels':[], 'attention_mask':[], 'decoder_input_ids':[], 'decoder_input_ids_test':[], 'attention_mask_test':[], 'unlikelihood_tokens':[]}
+    
+    tokens_x['input_ids'].append([0]+input_sentence[0]+[2])
+    tokens_x['attention_mask'].append(list(np.ones_like(tokens_x['input_ids'][-1])))
+    tokens_y['labels'].append([1])  # for sample inference, we don't need label.
+    tokens_y['decoder_input_ids'].append([2] + prefix_sentence[0]) #decoder input
+    tokens_y['decoder_input_ids_test'].append(prefix_sentence[0])
+    tokens_y['attention_mask'].append(list(np.ones_like(tokens_y['decoder_input_ids'][-1])))
+    tokens_y['attention_mask_test'].append(list(np.ones_like(tokens_y['decoder_input_ids_test'][-1])))
+    
+    sample_set = MedMentionsDataset(tokens_x, tokens_y, test_set=True)
+    
+    return sample_set

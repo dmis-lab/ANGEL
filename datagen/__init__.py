@@ -1,1 +1,1 @@
-from datagen.datageneration_finetune import prepare_trainer_dataset
+from datagen.datageneration_finetune import prepare_trainer_dataset, process_sample
