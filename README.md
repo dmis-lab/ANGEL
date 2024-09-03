@@ -117,7 +117,7 @@ DATASET=ncbi # bc5cdr, cometa, aap, mm
 bash script/inference/inference.sh $DATASET
 ```
 
-## Output format
+### Output format
 
 The results file in your model folder contains the final scores:
 ```json
@@ -153,6 +153,9 @@ Additionally, the file lists candidates for each mention, indicating correctness
 ```
 
 ### Scores
+
+We utilized five popular BioEL benchmark datasets: [NCBI-disease](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3951655/) (NCBI), [BC5CDR](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4860626/), [COMETA](https://aclanthology.org/2020.emnlp-main.253/), [AskAPatient](https://aclanthology.org/P16-1096/) (AAP), and [MedMentions ST21pv](https://arxiv.org/abs/1902.09476) (MM-ST21pv).
+
 <table border="1" cellspacing="0" cellpadding="5">
   <thead>
     <tr>
@@ -193,22 +196,22 @@ Additionally, the file lists candidates for each mention, indicating correctness
       <td>70.7</td>
     </tr>
     <tr>
-      <td>ANGEL(Ours)</td>
-      <td>92.8</td>
-      <td>94.5</td>
-      <td>82.8</td>
-      <td>90.2</td>
-      <td>73.3</td>
+      <td>ANGEL (<b>Ours</b>b>)</td>
+      <td><b>92.8<\b></td>
+      <td><b>94.5<\b></td>
+      <td><b>82.8<\b></td>
+      <td><b>90.2<\b></td>
+      <td><b>73.3<\b></td>
     </tr>
   </tbody>
 </table>
 
-- Scores of GenBioEL is reproduced.
-- We exclude the performance of BioSYN and SapBERT on BC5CDR, as they were evaluated separately on the chemical and disease subsets, differing from our settings.
+- The scores of GenBioEL were reproduced.
+- We excluded the performance of BioSYN and SapBERT on BC5CDR, as they were evaluated separately on the chemical and disease subsets, differing from our settings.
 
 ## Model Checkpoints
 
-| Pretrained | NCBI-disease | BC5CDR | COMETA | Medmentions ST21pv | 
+| Pre-trained | NCBI | BC5CDR | COMETA | MM-ST21pv | 
 |:------------:|:-----:|:-----:|:-----:|:-----:| 
 | [ANGEL_pretrained](https://huggingface.co/chanwhistle/ANGEL_pretrained)| [ANGEL_ncbi](https://huggingface.co/chanwhistle/ANGEL_ncbi) | [ANGEL_bc5cdr](https://huggingface.co/chanwhistle/ANGEL_bc5cdr) | [ANGEL_cometa](https://huggingface.co/chanwhistle/ANGEL_cometa) |  [ANGEL_mm](https://huggingface.co/chanwhistle/ANGEL_mm) |
 
@@ -228,4 +231,4 @@ If interested, please cite:
 ```
 
 ## Acknowledgement
-Parts of the code are modified from [GenBioEL](https://github.com/Yuanhy1997/GenBioEL). We appreciate the authors for making GenBioEL open-sourced.
+This code includes modifications based on the code of [GenBioEL](https://github.com/Yuanhy1997/GenBioEL). We are grateful to the authors for providing their code/models as open-source software.
