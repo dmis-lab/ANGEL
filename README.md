@@ -219,14 +219,11 @@ We utilized five popular BioEL benchmark datasets: NCBI-disease (NCBI), BC5CDR, 
 
 If you are interested in our work, please cite:
 ```bibtex
-@misc{kim2024learningnegativesamplesgenerative,
-      title={Learning from Negative Samples in Generative Biomedical Entity Linking}, 
-      author={Chanhwi Kim and Hyunjae Kim and Sihyeon Park and Jiwoo Lee and Mujeen Sung and Jaewoo Kang},
-      year={2024},
-      eprint={2408.16493},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL},
-      url={https://arxiv.org/abs/2408.16493}, 
+@article{kim2024learning,
+  title={Learning from Negative Samples in Generative Biomedical Entity Linking},
+  author={Kim, Chanhwi and Kim, Hyunjae and Park, Sihyeon and Lee, Jiwoo and Sung, Mujeen and Kang, Jaewoo},
+  journal={arXiv preprint arXiv:2408.16493},
+  year={2024}
 }
 ```
 
