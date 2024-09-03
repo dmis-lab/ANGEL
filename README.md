@@ -228,7 +228,7 @@ We utilized five popular BioEL benchmark datasets: NCBI-disease (NCBI), BC5CDR, 
 
 ## Direct Use
 
-To run the model without any need for a preprocessed dataset, you can use the run_sample.py script. 
+To run the model without any need for a preprocessed dataset, you can use the run_sample.sh script. 
 
 ```bash
 bash script/inference/run_sample.sh ncbi
