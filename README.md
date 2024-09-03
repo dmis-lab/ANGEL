@@ -117,19 +117,7 @@ DATASET=ncbi # bc5cdr, cometa, aap, mm
 bash script/inference/inference.sh $DATASET
 ```
 
-
-#### BEST Score
-|              Model                | Acc@1/Acc@5 | 
-|:----------------------------------|:--------:|   
-| [ANGEL_ncbi](https://huggingface.co/chanwhistle/ANGEL_ncbi) | **92.8**/**95.7** | 
-| [ANGEL_bc5cdr](https://huggingface.co/chanwhistle/ANGEL_bc5cdr) | **94.5**/**96.8** |
-| [ANGEL_cometa](https://huggingface.co/chanwhistle/ANGEL_cometa) | **82.8**/**88.5** |
-| ANGEL_aap | **90.2**/**95.2** | 
-| [ANGEL_mm](https://huggingface.co/chanwhistle/ANGEL_mm) | **73.3**/**84.3**  | 
-
-
-
-## Result
+## Output format
 
 The results file in your model folder contains the final scores:
 ```json
@@ -164,6 +152,65 @@ Additionally, the file lists candidates for each mention, indicating correctness
 }
 ```
 
+### Scores
+<table border="1" cellspacing="0" cellpadding="5">
+  <thead>
+    <tr>
+      <th rowspan="2">Model</th>
+      <th colspan="5">Dataset</th>
+    </tr>
+    <tr>
+      <th>NCBI</th>
+      <th>BC5CDR</th>
+      <th>COMETA</th>
+      <th>AAP</th>
+      <th>MM-ST21pv</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="https://github.com/dmis-lab/BioSyn">BioSYN</a> (Sung et al., 2020)</td>
+      <td>91.1</td>
+      <td>-</td>
+      <td>71.3</td>
+      <td>82.6</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/cambridgeltl/sapbert">SapBERT</a> (Liu et al., 2021)</td>
+      <td>92.3</td>
+      <td>-</td>
+      <td>75.1</td>
+      <td>89.0</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/Yuanhy1997/GenBioEL">GenBioEL</a> (Yuan et al., 2022b)</td>
+      <td>91.0</td>
+      <td>93.1</td>
+      <td>80.9</td>
+      <td>89.3</td>
+      <td>70.7</td>
+    </tr>
+    <tr>
+      <td>ANGEL(Ours)</td>
+      <td>92.8</td>
+      <td>94.5</td>
+      <td>82.8</td>
+      <td>90.2</td>
+      <td>73.3</td>
+    </tr>
+  </tbody>
+</table>
+
+- Scores of GenBioEL is reproduced.
+- We exclude the performance of BioSYN and SapBERT on BC5CDR, as they were evaluated separately on the chemical and disease subsets, differing from our settings.
+
+## Model Checkpoints
+
+| Pretrained | NCBI-disease | BC5CDR | COMETA | Medmentions ST21pv | 
+|:------------:|:-----:|:-----:|:-----:|:-----:| 
+| [ANGEL_pretrained](https://huggingface.co/chanwhistle/ANGEL_pretrained)| [ANGEL_ncbi](https://huggingface.co/chanwhistle/ANGEL_ncbi) | [ANGEL_bc5cdr](https://huggingface.co/chanwhistle/ANGEL_bc5cdr) | [ANGEL_cometa](https://huggingface.co/chanwhistle/ANGEL_cometa) |  [ANGEL_mm](https://huggingface.co/chanwhistle/ANGEL_mm) |
 
 ## Citations
 
