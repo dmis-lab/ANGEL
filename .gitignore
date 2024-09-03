@@ -2,3 +2,4 @@
 benchmarks/
 model/
 logs/
+__pycache__/

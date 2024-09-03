@@ -43,18 +43,25 @@ bash script/dataset/process_dataset.sh
 ### Dataset Format
 For training, prepare the data in the following format:
 
-train.source: Contains JSON lines with the input text, including marked mentions.
-train.target: Contains JSON lines with two elements: the prefix the mention is and the target entity.
+- source: Input text including marked mentions with **START** and **END**.
+- Example : ['Ocular manifestations of START juvenile rheumatoid arthritis END.']
 
-Example:
+- target: Pair of the prefix [the mention is] and the [target entity].
+- Example : ['juvenile rheumatoid arthritis is ', 'juvenile rheumatoid arthritis']
 
-- '.source': ['Ocular manifestations of START juvenile rheumatoid arthritis END.']
-- '.target': ['juvenile rheumatoid arthritis is ', 'juvenile rheumatoid arthritis']
+A Prefix Tree (or **Trie**) is a type of tree data structure used to efficiently store and manage a set of strings. 
+Each node in the Trie represents a single character, and entire strings are formed by tracing a path from the root to a specific node.
+In this context, we tokenize target entities and build a Trie structure to restrict the output space to the target knowledge base. 
+To construct the Trie, you need to create a target_kb.json file formatted as a dictionary like below.
 
-For trie construction:
-
-- If using prefix prompt tokens, set the trie root as 16 (the token ID for is).
-- If not using prefix tokens, set the root as 2 (the BART decoder’s BOS token).
+```json
+{
+  "C565588": ["epidermolysis bullosa with diaphragmatic hernia"], 
+  "C567755": ["tooth agenesis selective 6", "sthag6"], 
+  "C565584": ["epithelial squamous dysplasia keratinizing desquamative of urinary tract"].
+  ...
+}
+```
 
 To experiment with your own dataset, preprocess it in the format described above.
 
@@ -121,34 +128,34 @@ bash script/inference/inference.sh $DATASET
 
 The results file in your model folder contains the final scores:
 ```json
-  {
-    "count_top1": 92.812,
-    "count_top2": 94.062,
-    "count_top3": 95.208,
-    "count_top4": 95.625,
-    "count_top5": 95.729,
-    ...
+{
+  "count_top1": 92.812,
+  "count_top2": 94.062,
+  "count_top3": 95.208,
+  "count_top4": 95.625,
+  "count_top5": 95.729,
+  ...
 }
 ```
 
 Additionally, the file lists candidates for each mention, indicating correctness:
 ```json
 {
-    "correctness": "correct",
-    "given_mention": "non inherited breast carcinomas",
-    "result": [
-      " breast carcinomas",
-      " breast cancer",
-      ...
-    ],
-    "cui_label": [
-      "D001943"
-    ],
-    "cui_result": [
-      ["D001943"],
-      ["114480","D001943"],
-      ...
-      ]
+  "correctness": "correct",
+  "given_mention": "non inherited breast carcinomas",
+  "result": [
+    " breast carcinomas",
+    " breast cancer",
+    ...
+  ],
+  "cui_label": [
+    "D001943"
+  ],
+  "cui_result": [
+    ["D001943"],
+    ["114480","D001943"],
+    ...
+    ]
 }
 ```
 
@@ -216,6 +223,48 @@ We utilized five popular BioEL benchmark datasets: NCBI-disease (NCBI), BC5CDR, 
 | [ANGEL_pretrained](https://huggingface.co/chanwhistle/ANGEL_pretrained)| [ANGEL_ncbi](https://huggingface.co/chanwhistle/ANGEL_ncbi) | [ANGEL_bc5cdr](https://huggingface.co/chanwhistle/ANGEL_bc5cdr) | [ANGEL_cometa](https://huggingface.co/chanwhistle/ANGEL_cometa) |  [ANGEL_mm](https://huggingface.co/chanwhistle/ANGEL_mm) |
 
 - The AskAPatient dataset does not have a predefined split; therefore, we utilized a 10-fold cross-validation method to evaluate our model. As a result, there are 10 model checkpoints corresponding to the AskAPatient dataset. Due to this, we have not open-sourced the checkpoints for this dataset.
+<<<<<<< HEAD
+=======
+
+
+## Direct Use
+
+To run the model without any need for a preprocessed dataset, you can use the run_sample.py script. 
+Below is a guide on how to execute the script and customize it to suit your needs.
+
+```bash
+bash script/inference/run_sample.sh ncbi
+```
+
+If you want to modify the sample or input, you can change the script in run_sample.py.
+
+#### Define Your Inputs
+input_sentence: The sentence that includes the entity you want to normalize. Make sure the entity is enclosed within **START** and **END** markers.
+prefix_sentence: A sentence that introduces the context. This should follow the format "**entity** is".
+candidates: A list of candidate entities that the model will use to attempt normalization.
+
+```python
+if __name__ == '__main__':
+    
+    # Load configuration settings
+    config = get_config()
+    
+    # Define the input sentence, marking the entity of interest with START and END
+    input_sentence = "The r496h mutation of arylsulfatase a does not cause START metachromatic leukodystrophy END"
+    
+    # Define the prefix sentence to provide context
+    prefix_sentence = "Metachromatic leukodystrophy is"
+    
+    # List your candidate entities for normalization
+    candidates = ["adrenoleukodystrophy", "thrombosis", "anemia", "huntington disease", "leukodystrophy metachromatic"]
+    
+    # Run the sample with the provided configuration and inputs
+    run_sample(config, input_sentence, prefix_sentence, candidates)
+```
+
+By modifying input_sentence, prefix_sentence, and candidates, you can tailor the examples used by the model to fit your specific needs.
+
+>>>>>>> 260bee4 (resolve error)
 
 ## Citations
 
