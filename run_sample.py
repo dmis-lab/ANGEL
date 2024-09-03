@@ -98,7 +98,7 @@ def run_sample(config, input_sentence, prefix_sentence, candidates):
                 result.append(tokenizer.decode(sent, skip_special_tokens=True))
                 
                 
-    print(f"Input  : {tokenizer.decode(input_ids[0], skip_special_tokens=True)}")  
+    print(f"\nInput  : {tokenizer.decode(input_ids[0], skip_special_tokens=True)}")  
     print(f"Output : {tokenizer.decode(decoder_input_ids[0])}{result[0]}")      
 
 if __name__ == '__main__':
