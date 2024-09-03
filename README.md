@@ -197,11 +197,11 @@ We utilized five popular BioEL benchmark datasets: NCBI-disease (NCBI), BC5CDR, 
     </tr>
     <tr>
       <td>ANGEL (<b>Ours</b>)</td>
-      <td><b>92.8<\b></td>
-      <td><b>94.5<\b></td>
-      <td><b>82.8<\b></td>
-      <td><b>90.2<\b></td>
-      <td><b>73.3<\b></td>
+      <td><b>92.8</td>
+      <td><b>94.5</td>
+      <td><b>82.8</td>
+      <td><b>90.2</td>
+      <td><b>73.3</td>
     </tr>
   </tbody>
 </table>
