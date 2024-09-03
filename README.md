@@ -154,7 +154,7 @@ Additionally, the file lists candidates for each mention, indicating correctness
 
 ### Scores
 
-We utilized five popular BioEL benchmark datasets: [NCBI-disease](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3951655/) (NCBI), [BC5CDR](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4860626/), [COMETA](https://aclanthology.org/2020.emnlp-main.253/), [AskAPatient](https://aclanthology.org/P16-1096/) (AAP), and [MedMentions ST21pv](https://arxiv.org/abs/1902.09476) (MM-ST21pv).
+We utilized five popular BioEL benchmark datasets: NCBI-disease (NCBI), BC5CDR, COMETA, AskAPatient (AAP), and MedMentions ST21pv (MM-ST21pv).
 
 <table border="1" cellspacing="0" cellpadding="5">
   <thead>
@@ -196,7 +196,7 @@ We utilized five popular BioEL benchmark datasets: [NCBI-disease](https://www.nc
       <td>70.7</td>
     </tr>
     <tr>
-      <td>ANGEL (<b>Ours</b>b>)</td>
+      <td>ANGEL (<b>Ours</b>)</td>
       <td><b>92.8<\b></td>
       <td><b>94.5<\b></td>
       <td><b>82.8<\b></td>
