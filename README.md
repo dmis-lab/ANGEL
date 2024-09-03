@@ -256,9 +256,9 @@ if __name__ == '__main__':
     run_sample(config, input_sentence, prefix_sentence, candidates)
 ```
 
-```python
+```terminal
     # Expected Output
-    Input  :  The r496h mutation of arylsulfatase a does not cause START metachromatic leukodystrophy END. 
+    Input  :  The r496h mutation of arylsulfatase a does not cause START metachromatic leukodystrophy END.
     Output :  Metachromatic leukodystrophy is leukodystrophy metachromatic
 ```
 
