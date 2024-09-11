@@ -86,7 +86,7 @@ If you want to use negative-aware pre-trained model, you can use the model with 
 from transformers import AutoModel
 
 # Load the model
-model = AutoModel.from_pretrained("chanwhistle/ANGEL_pretrained")
+model = AutoModel.from_pretrained("dmis-lab/ANGEL_pretrained")
 ```
 
 ## Fine-tuning
