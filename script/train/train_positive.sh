@@ -19,7 +19,7 @@ DATASET=$1
 LEARNING_RATE=$2
 STEPS=$3
 BATCH_SIZE= 64
-MODEL_PATH=chanwhistle/ANGEL_Pretrained
+MODEL_PATH=dmis-lab/ANGEL_Pretrained
 DATATYPE=SYN3                                   # If you want to don't use top-k synonyms, remove this
 
 source /usr/miniconda3/etc/profile.d/conda.sh

@@ -6,7 +6,7 @@ conda init
 conda activate positive_only  
 
 python ./run_sample.py \
-        -model_load_path chanwhistle/ANGEL_$DATASET \
+        -model_load_path dmis-lab/ANGEL_$DATASET \
         -model_token_path facebook/bart-large \
         -per_device_eval_batch_size 1 \
         -num_beams 5 \

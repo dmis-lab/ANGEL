@@ -7,7 +7,7 @@ conda activate positive_only
 
 python ./train_positive_only.py \
         -dataset_path ./benchmarks/$DATASET \
-        -model_load_path chanwhistle/ANGEL_$DATASET \
+        -model_load_path dmis-lab/ANGEL_$DATASET \
         -model_token_path facebook/bart-large \
         -trie_path ./benchmarks/$DATASET/trie.pkl\
         -dict_path ./benchmarks/"$DATASET"/target_kb.json \
