@@ -2,23 +2,23 @@
 #
 #                             NCBI      BC5CDR    COMETA  AAP     MM-ST21pv
 # Training Steps              20000     30000     40000   30000   40000
-# Learning Rate               3e-7      5e-6      5e-6    5e-6    2e-5
+# Learning Rate               3e-7      5e-6      2e-5    5e-6    3e-5
 # Weight Decay                0.01      0.01      0.01    0.01    0.01
 # Batch Size                  16        16        16      16      16
-# Warmup Steps                0         500       500     0       1,000
+# Warmup Steps                0         5,00       1,000     0       1,000
 
 
 # bash script/train/train_positive.sh ncbi 3e-7 20000
 # bash script/train/train_positive.sh bc5cdr 5e-6 30000
-# bash script/train/train_positive.sh cometa 5e-6 40000
+# bash script/train/train_positive.sh cometa 2e-5 40000
 # bash script/train/train_positive.sh aap 5e-6 30000
-# bash script/train/train_positive.sh mm 2e-5 40000
+# bash script/train/train_positive.sh mm 3e-5 40000
 
 
 DATASET=$1
 LEARNING_RATE=$2
 STEPS=$3
-BATCH_SIZE= 64
+BATCH_SIZE= 16
 MODEL_PATH=dmis-lab/ANGEL_Pretrained
 DATATYPE=SYN3                                   # If you want to don't use top-k synonyms, remove this
 
@@ -58,7 +58,7 @@ if [ $DATASET != "aap" ]; then
             -per_device_train_batch_size $BATCH_SIZE \
             -per_device_eval_batch_size 1 \
             -seed 0 \
-            -num_beams 10 \
+            -num_beams 5 \
             -prefix_prompt \
             -prefix_mention_is \
             -evaluation \
@@ -98,7 +98,7 @@ else
                 -per_device_train_batch_size $BATCH_SIZE \
                 -per_device_eval_batch_size 1 \
                 -seed 0 \
-                -num_beams 10 \
+                -num_beams 5 \
                 -prefix_prompt \
                 -prefix_mention_is \
                 -evaluation \

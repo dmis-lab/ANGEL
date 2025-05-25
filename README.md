@@ -109,8 +109,9 @@ For negative-aware fine-tuning on the downstream dataset, execute:
 ```bash
 DATASET=ncbi # bc5cdr, cometa, aap, mm
 LEARNING_RATE=2e-5 # 1e-5, 2e-5
+BATCH_SIZE=16 # 8, 16, 32
 
-bash script/train/train_negative.sh $DATASET $LEARNING_RATE
+bash script/train/train_negative.sh $DATASET $LEARNING_RAT $BATCH_SIZE
 ```
 The script for other datasets is in the train_negative.sh file.
 

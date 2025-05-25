@@ -5,7 +5,7 @@ source /usr/miniconda3/etc/profile.d/conda.sh
 conda init 
 conda activate positive_only  
 
-python ./train_positive_only.py \
+CUDA_VISIBLE_DEVICES=0 python ./train_positive_only.py \
         -dataset_path ./benchmarks/$DATASET \
         -model_load_path dmis-lab/ANGEL_$DATASET \
         -model_token_path facebook/bart-large \

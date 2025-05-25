@@ -332,8 +332,8 @@ def evalu(config):
     print('=============Top3 Precision :\t',round(scores['count_top3']/(i+1)*100, 3))
     print('=============Top4 Precision :\t',round(scores['count_top4']/(i+1)*100, 3))
     print('=============Top5 Precision :\t',round(scores['count_top5']/(i+1)*100, 3))
-
-    with open(f'./logs/{config.model_name}.txt', 'a+') as f:
+    os.makedirs(config.logging_path, exist_ok=True)
+    with open(f'{config.logging_path}/{config.model_name}.txt', 'a+') as f:
         f.write(config.model_load_path+'\n')
         f.write(f'=============Top1 Precision :\t{str(round(scores["count_top1"]/(i+1)*100, 3))}\n')
         f.write(f'=============Top2 Precision :\t{str(round(scores["count_top2"]/(i+1)*100, 3))}\n')
@@ -354,13 +354,12 @@ def evalu(config):
     
     result_score = {f'count_top{k+1}': round(scores[f'count_top{k+1}'] / (i + 1) * 100, 3) for k in range(len(scores))}
     zipped_list.insert(0, result_score)
-    os.makedirs(config.model_load_path, exist_ok=True)
     
     if config.testset:
-        with open(os.path.join(config.model_load_path, 'results_test_pos.json'), 'w') as f:
+        with open(os.path.join(config.logging_path, f'{config.model_load_path[15:]}_results_test_pos.json'), 'w') as f:
             json.dump(zipped_list, f, indent=2)
     else:
-        with open(os.path.join(config.model_load_path, 'results_dev_pos.json'), 'w') as f:
+        with open(os.path.join(config.logging_path, f'{config.model_load_path[:15]}_results_dev_pos.json'), 'w') as f:
             json.dump(zipped_list, f, indent=2)
 
     return scores

@@ -136,6 +136,7 @@ def get_config():
     parser.add_argument("-trie_path", type=str, default='./trie.pkl', help="Path of the Trie")
     parser.add_argument("-dict_path", type=str, default='./benchmark/ncbi_EL/target_kb.json', help="Path of the CUI to string dictionary")
     parser.add_argument("-retrieved_path", type=str, default='./trie.pkl', help="Path of the retrieved CUI to string dictionary")
+    parser.add_argument("-output_path", type=str, default='./output', help="Output path if model directory is not exists")
     
     # Logging and saving
     parser.add_argument("-logging_path", type=str, default='./logs', help="Path for saving logs")
