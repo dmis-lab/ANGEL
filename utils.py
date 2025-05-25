@@ -7,6 +7,7 @@ from collections import defaultdict
 import json
 from tqdm import tqdm
 import random
+import ast
 from datasets import Dataset
 from trie import Trie
 
